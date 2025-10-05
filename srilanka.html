@@ -110,7 +110,22 @@
             border: none;
             background: none;
         }
-
+            footer {
+                margin-top: 4rem;
+                padding-top: 2rem;
+                border-top: 1px solid #eee;
+                display: flex;
+                gap: 1.5rem;
+                font-size: 0.95rem;
+            }
+            
+            footer a {
+                border-bottom: 1px solid transparent;
+            }
+            
+            footer a:hover {
+                border-bottom: 1px solid #111;
+            }
         @media (max-width: 768px) {
             body {
                 padding: 2rem 1.5rem;
@@ -196,5 +211,10 @@
             }
         });
     </script>
+    <footer>
+    <a href="index.html">Home</a>
+    <a href="blog.html">Writing</a>
+    <a href="photos.html">Photography</a>
+</footer>
 </body>
 </html>
