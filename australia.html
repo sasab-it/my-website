@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Australia - Saron Berhane</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            line-height: 1.7;
+            color: #111;
+            background: #fff;
+            padding: 3rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: normal;
+            margin-bottom: 2rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            max-width: 650px;
+        }
+
+        a {
+            color: #111;
+            text-decoration: none;
+            border-bottom: 1px solid #111;
+        }
+
+        a:hover {
+            border-bottom: 1px solid #999;
+            color: #666;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .description {
+            margin-bottom: 3rem;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+            display: block;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .gallery img:hover {
+            opacity: 0.85;
+        }
+
+        .caption {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 2rem;
+            color: #111;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 2rem 1.5rem;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="photos.html" class="back-link">← Back</a>
+    
+    <h1>Australia</h1>
+    
+    <div class="description">
+        <p>
+            Mostly south coast NSW.
+        </p>
+    </div>
+
+    <div class="gallery">
+        <div>
+            <img src="assets/images/australia/IMG_20180302_144325_779.jpg" alt="Ocean rock" onclick="openLightbox(this)">
+            <p class="caption">Salty pink rocks</p>
+        </div>
+        <div>
+            <img src="assets/images/australia/1.JPG" alt="Mangrove" onclick="openLightbox(this)">
+            <p class="caption">Lone mangrove tree</p>
+        </div>
+        <div>
+            <img src="assets/images/australia/000039.JPG" alt="Shack" onclick="openLightbox(this)">
+            <p class="caption">Shack life</p>
+        </div>
+        <div>
+            <img src="assets/images/australia/000027.JPG" alt="Wispy trees" onclick="openLightbox(this)">
+            <p class="caption">99.9% of horizontal views</p>
+        </div>
+      
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()">×</button>
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <script>
+        function openLightbox(img) {
+            event.stopPropagation();
+            document.getElementById('lightbox').style.display = 'flex';
+            document.getElementById('lightbox-img').src = img.src;
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>
