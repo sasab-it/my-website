@@ -1,108 +1,260 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Saron Berhane</title>
+
     <style>
+
         * {
+
             margin: 0;
+
             padding: 0;
+
             box-sizing: border-box;
+
         }
 
         body {
+
             font-family: Georgia, 'Times New Roman', serif;
+
             line-height: 1.7;
+
             color: #111;
+
             background: #fff;
-            padding: 3rem 2rem;
-            max-width: 650px;
+
+        }
+
+        .container {
+
+            display: flex;
+
+            min-height: 100vh;
+
+            max-width: 1200px;
+
             margin: 0 auto;
+
+        }
+
+        .sidebar {
+
+            width: 200px;
+
+            padding: 3rem 2rem;
+
+            border-right: 1px solid #eee;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 1rem;
+
+        }
+
+        .sidebar a {
+
+            color: #111;
+
+            text-decoration: none;
+
+            font-size: 0.95rem;
+
+            border-bottom: 1px solid transparent;
+
+            transition: border-color 0.3s;
+
+        }
+
+        .sidebar a:hover {
+
+            border-bottom: 1px solid #111;
+
+        }
+
+        .content {
+
+            flex: 1;
+
+            padding: 3rem 4rem;
+
+            max-width: 650px;
+
         }
 
         h1 {
+
             font-size: 1.5rem;
+
             font-weight: normal;
+
             margin-bottom: 2rem;
+
         }
 
         p {
+
             margin-bottom: 1.5rem;
+
             font-size: 1rem;
+
         }
 
         a {
+
             color: #111;
+
             text-decoration: none;
+
             border-bottom: 1px solid #111;
+
         }
 
         a:hover {
+
             border-bottom: 1px solid #999;
+
             color: #666;
+
         }
 
         .section {
-            margin-bottom: 3rem;
+
+            margin-bottom: 2rem;
+
         }
 
-        .nav-links {
-            margin: 2rem 0;
+        .social-links {
+
+            margin-top: 2rem;
+
             display: flex;
-            gap: 1.5rem;
+
+            gap: 1rem;
+
             flex-wrap: wrap;
+
         }
 
-        @media (max-width: 600px) {
-            body {
+        @media (max-width: 768px) {
+
+            .container {
+
+                flex-direction: column;
+
+            }
+
+            .sidebar {
+
+                width: 100%;
+
+                border-right: none;
+
+                border-bottom: 1px solid #eee;
+
                 padding: 2rem 1.5rem;
+
+                flex-direction: row;
+
+                gap: 1.5rem;
+
             }
-            
+
+            .content {
+
+                padding: 2rem 1.5rem;
+
+            }
+
             h1 {
+
                 font-size: 1.3rem;
+
             }
+
         }
+
     </style>
+
 </head>
+
 <body>
-    <h1>Saron Berhane</h1>
-    
-    <div class="section">
-        <p>
-            I work in venture capital and am based in Sydney. My training is in biomedical engineering and immunobiology. 
-            Previously, I founded and operated two hardware and biotech companies. Now I work at Blackbird where I invest
-            in early stage technology companies and run Foundry, our deep tech pre-accelerator. 
+
+    <div class="container">
+
+        <aside class="sidebar">
+
+            <a href="blog.html">Writing</a>
+
+            <a href="photos.html">Photos</a>
+
+        </aside>
+
+        <main class="content">
+
+            <h1>Saron Berhane</h1>
+
+            
+
+            <div class="section">
+
+                <p>
+
+                    I work in venture capital and am based in Sydney. My training is in biomedical engineering and immunobiology. 
+
+                    Previously, I founded and operated two hardware and biotech companies. Now I work at <a href="https://blackbird.vc">Blackbird</a>
+                    where I invest in early stage technology companies and run Foundry, our deep tech pre-accelerator.
+
+                </p>
+
+                 <p>
+
+                    I'm interested in tech that reshapes how we understand and interact with the world. 
+                    This is a non-exhaustive list and includes things like AI safety,
+                    quantum computing, robotics, synthetic biology, and physics simulation.
+
         </p>
-        <p>
-            I'm interested in tech that reshapes how we understand and interact with 
-            the world. This is a non-exhaustive list and includes things like AI safety,
-            quantum computing, robotics, synthetic biology, and physics 
-            simulation.
-        </p>
+
     </div>
 
     <div class="section">
+
         <p><strong>Writing</strong></p>
+
         <p>
+
             I write about what I'm learning on my <a href="https://cyberneticmeadows.substack.com">Substack</a>. 
+
             Recent posts are also listed <a href="blog.html">here</a>.
+
         </p>
+
     </div>
 
-    <div class="section">
-        <p><strong>Photos</strong></p>
-        <p>
-            I take photos when I travel. A selection is <a href="photos.html">here</a>.
-        </p>
+            </div>
+
+            <div class="social-links">
+
+                <a href="https://x.com/saron__berhane">X</a> · 
+                <a href="https://linkedin.com/in/saron-berhane/">LinkedIn</a> · 
+                <a href="mailto:sberhane@blackbird.vc">Email</a>
+
+            </div>
+
+        </main>
+
     </div>
 
-    <div class="section">
-        <p>
-            <a href="https://x.com/saron__berhane">X</a> · 
-            <a href="https://linkedin.com/in/saron-berhane/">LinkedIn</a> · 
-            <a href="mailto:sberhane@blackbird.vc">Email</a>
-        </p>
-    </div>
 </body>
+
 </html>
