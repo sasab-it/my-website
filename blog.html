@@ -92,7 +92,22 @@
             color: #666;
             font-size: 0.95rem;
         }
-
+        footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.95rem;
+        }
+        
+        footer a {
+            border-bottom: 1px solid transparent;
+        }
+        
+        footer a:hover {
+            border-bottom: 1px solid #111;
+        }
         @media (max-width: 600px) {
             body {
                 padding: 2rem 1.5rem;
@@ -121,7 +136,11 @@
             Ambition as efficiency, velocity over certainty, story as an operating system.
         </p>
     </div>
-
+        <footer>
+            <a href="index.html">Home</a>
+            <a href="blog.html">Writing</a>
+            <a href="photos.html">Photos</a>
+        </footer>
     <!-- Add more posts here - just copy the .post div structure -->
 </body>
 </html>
