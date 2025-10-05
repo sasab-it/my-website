@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photos - Saron Berhane</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            line-height: 1.7;
+            color: #111;
+            background: #fff;
+            padding: 3rem 2rem;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: normal;
+            margin-bottom: 2rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        a {
+            color: #111;
+            text-decoration: none;
+            border-bottom: 1px solid #111;
+        }
+
+        a:hover {
+            border-bottom: 1px solid #999;
+            color: #666;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .intro {
+            margin-bottom: 3rem;
+        }
+
+        .collections {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .collection {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 2rem;
+        }
+
+        .collection:last-child {
+            border-bottom: none;
+        }
+
+        .collection h2 {
+            font-size: 1.1rem;
+            font-weight: normal;
+            margin-bottom: 0.5rem;
+        }
+
+        .collection-link {
+            display: block;
+            border: none;
+        }
+
+        .collection-link:hover h2 {
+            color: #666;
+        }
+
+        .collection p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← Home</a>
+    
+    <h1>Photos</h1>
+
+    <div class="intro">
+        <p>
+            I take photos when I travel. These are organized by place.
+        </p>
+    </div>
+
+    <div class="collections">
+        <div class="collection">
+            <a href="srilanka.html" class="collection-link">
+                <h2>Sri Lanka</h2>
+                <p>Mirissa, Galle, Ella and more</p>
+            </a>
+        </div>
+
+        <div class="collection">
+            <a href="australia.html" class="collection-link">
+                <h2>Australia</h2>
+          
+            </a>
+        </div>
+    </div>
+</body>
+</html>
