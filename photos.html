@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photos - Saron Berhane</title>
+    <title>Photography - Saron Berhane</title>
     <style>
         * {
             margin: 0;
@@ -17,14 +17,18 @@
             color: #111;
             background: #fff;
             padding: 3rem 2rem;
-            max-width: 650px;
+            max-width: 900px;
             margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         h1 {
-            font-size: 1.5rem;
-            font-weight: normal;
+            font-size: 2rem;
+            font-weight: 600;
             margin-bottom: 2rem;
+            letter-spacing: -0.02em;
         }
 
         p {
@@ -36,11 +40,12 @@
             color: #111;
             text-decoration: none;
             border-bottom: 1px solid #111;
+            transition: color 0.3s ease, border-color 0.3s ease;
         }
 
         a:hover {
-            border-bottom: 1px solid #999;
             color: #666;
+            border-bottom-color: #666;
         }
 
         .back-link {
@@ -53,6 +58,10 @@
             margin-bottom: 3rem;
         }
 
+        .main-content {
+            flex: 1;
+        }
+
         .collections {
             display: flex;
             flex-direction: column;
@@ -62,6 +71,12 @@
         .collection {
             border-bottom: 1px solid #eee;
             padding-bottom: 2rem;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .collection:hover {
+            transform: translateX(5px);
+            border-bottom-color: #111;
         }
 
         .collection:last-child {
@@ -70,7 +85,7 @@
 
         .collection h2 {
             font-size: 1.1rem;
-            font-weight: normal;
+            font-weight: 500;
             margin-bottom: 0.5rem;
         }
 
@@ -87,7 +102,8 @@
             color: #666;
             font-size: 0.95rem;
         }
-                footer {
+
+        footer {
             margin-top: 4rem;
             padding-top: 2rem;
             border-top: 1px solid #eee;
@@ -95,32 +111,39 @@
             gap: 1.5rem;
             font-size: 0.95rem;
         }
-        
+
         footer a {
-            border-bottom: 1px solid transparent;
+            border: none;
+            transition: color 0.3s ease;
         }
-        
+
         footer a:hover {
-            border-bottom: 1px solid #111;
-}
+            color: #666;
+        }
 
         @media (max-width: 600px) {
             body {
                 padding: 2rem 1.5rem;
             }
+
+            h1 {
+                font-size: 1.6rem;
+            }
         }
     </style>
 </head>
 <body>
-    <a href="index.html" class="back-link">← Home</a>
-    
-    <h1>Photos</h1>
+    <div class="main-content">
+        <a href="index.html" class="back-link">← Home</a>
+        
+        <h1>Photography</h1>
 
-    <div class="intro">
-        <p>
-            I take photos when I travel. These are organised by place.
-        </p>
-    </div>
+        <div class="intro">
+            <p>
+                I take photos when I travel. These are organized by place.
+            </p>
+        </div>
+
 
     <div class="collections">
         <div class="collection">
@@ -138,9 +161,51 @@
         </div>
     </div>
     <footer>
-    <a href="index.html">Home</a>
-    <a href="blog.html">Writing</a>
-    <a href="photos.html">Photography</a>
+        <a href="index.html">Home</a>
+        <a href="blog.html">Writing</a>
+        <a href="photos.html">Photography</a>
     </footer>
+
+    <script>
+        // Scramble effect function
+        const scrambleText = (element, finalText) => {
+            const chars = '!@#$%^&*()_+-=[]{}|;:,.<>?/~`ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let iterations = 0;
+            const speed = 20;
+            const maxIterations = finalText.length;
+
+            if (element.scrambleInterval) {
+                clearInterval(element.scrambleInterval);
+            }
+
+            element.scrambleInterval = setInterval(() => {
+                element.textContent = finalText
+                    .split('')
+                    .map((char, index) => {
+                        if (char === ' ') return ' ';
+                        if (index < iterations) {
+                            return finalText[index];
+                        }
+                        return chars[Math.floor(Math.random() * chars.length)];
+                    })
+                    .join('');
+
+                if (iterations >= maxIterations) {
+                    clearInterval(element.scrambleInterval);
+                    element.textContent = finalText;
+                }
+
+                iterations += 1 / 2;
+            }, speed);
+        };
+
+        // Scramble effect for ALL links on hover
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                const text = this.textContent.trim();
+                scrambleText(this, text);
+            });
+        });
+    </script>
 </body>
 </html>
