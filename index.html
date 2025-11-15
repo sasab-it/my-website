@@ -1,260 +1,449 @@
-    <!DOCTYPE html>
-
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Saron Berhane</title>
-
     <style>
-
         * {
-
             margin: 0;
-
             padding: 0;
-
             box-sizing: border-box;
-
         }
 
         body {
-
-            font-family: Georgia, 'Times New Roman', serif;
-
-            line-height: 1.7;
-
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
             color: #111;
-
             background: #fff;
-
-        }
-
-        .container {
-
-            display: flex;
-
-            min-height: 100vh;
-
-            max-width: 1200px;
-
-            margin: 0 auto;
-
-        }
-
-        .sidebar {
-
-            width: 200px;
-
             padding: 3rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow-x: hidden;
+        }
 
-            border-right: 1px solid #eee;
+        /* Start everything hidden */
+        .header-content h1 {
+            opacity: 0;
+        }
 
+        .header-content p {
+            opacity: 0;
+        }
+
+        .headshot {
+            opacity: 0;
+        }
+
+        .section-number {
+            opacity: 0;
+        }
+
+        .section-title {
+            opacity: 0;
+        }
+
+        .section-content {
+            opacity: 0;
+        }
+
+        footer {
+            opacity: 0;
+        }
+
+        .header {
             display: flex;
-
-            flex-direction: column;
-
-            gap: 1rem;
-
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 5rem;
+            gap: 3rem;
         }
 
-        .sidebar a {
-
-            color: #111;
-
-            text-decoration: none;
-
-            font-size: 0.95rem;
-
-            border-bottom: 1px solid transparent;
-
-            transition: border-color 0.3s;
-
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .sidebar a:hover {
-
-            border-bottom: 1px solid #111;
-
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
         }
 
-        .content {
-
+        .header-content {
             flex: 1;
+        }
 
-            padding: 3rem 4rem;
-
-            max-width: 650px;
-
+        .headshot {
+            width: 180px;
+            height: 240px;
+            object-fit: cover;
+            flex-shrink: 0;
         }
 
         h1 {
-
-            font-size: 1.5rem;
-
-            font-weight: normal;
-
+            font-size: 2.5rem;
+            font-weight: 600;
             margin-bottom: 2rem;
-
+            letter-spacing: -0.02em;
+            transition: color 0.3s ease;
         }
 
-        p {
-
-            margin-bottom: 1.5rem;
-
-            font-size: 1rem;
-
-        }
-
-        a {
-
-            color: #111;
-
-            text-decoration: none;
-
-            border-bottom: 1px solid #111;
-
-        }
-
-        a:hover {
-
-            border-bottom: 1px solid #999;
-
+        h1:hover {
             color: #666;
+        }
 
+        .sections-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4rem;
+            margin-bottom: 5rem;
         }
 
         .section {
-
-            margin-bottom: 2rem;
-
+            opacity: 1;
         }
 
-        .social-links {
+        .section-number {
+            font-size: 0.85rem;
+            color: #999;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+        }
 
-            margin-top: 2rem;
+        .section:hover .section-number {
+            color: #111;
+        }
 
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .section:hover .section-title {
+            transform: translateX(5px);
+        }
+
+        .section-content {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #333;
+        }
+
+        .section-content p {
+            margin-bottom: 1.2rem;
+        }
+
+        a {
+            color: #111;
+            text-decoration: none;
+            border-bottom: 1px solid #111;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+
+        a:hover {
+            color: #666;
+            border-bottom-color: #666;
+        }
+
+        .posts {
+            margin-top: 1.5rem;
+        }
+
+        .post-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .post-item:hover {
+            transform: translateX(5px);
+            border-bottom-color: #111;
+        }
+
+        .post-item:last-child {
+            border-bottom: none;
+        }
+
+        .post-date {
+            font-size: 0.8rem;
+            color: #999;
+            margin-bottom: 0.3rem;
+            transition: color 0.3s ease;
+        }
+
+        .post-item:hover .post-date {
+            color: #111;
+        }
+
+        .post-title {
+            font-size: 0.95rem;
+            font-weight: 500;
+            display: block;
+            border: none;
+            margin-bottom: 0.3rem;
+            transition: color 0.3s ease;
+        }
+
+        .post-title:hover {
+            color: #666;
+        }
+
+        .substack-link {
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        footer {
+            margin-top: 6rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
             display: flex;
-
-            gap: 1rem;
-
+            gap: 2rem;
             flex-wrap: wrap;
-
+            font-size: 0.95rem;
+            opacity: 0;
         }
 
-        @media (max-width: 768px) {
+        footer a {
+            border: none;
+            transition: color 0.3s ease;
+        }
 
-            .container {
+        footer a:hover {
+            color: #666;
+        }
 
+        @media (max-width: 900px) {
+            .sections-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 2rem 1.5rem;
+            }
+
+            .header {
                 flex-direction: column;
-
+                align-items: center;
+                text-align: center;
+                gap: 2rem;
             }
 
-            .sidebar {
-
-                width: 100%;
-
-                border-right: none;
-
-                border-bottom: 1px solid #eee;
-
-                padding: 2rem 1.5rem;
-
-                flex-direction: row;
-
-                gap: 1.5rem;
-
-            }
-
-            .content {
-
-                padding: 2rem 1.5rem;
-
+            .headshot {
+                width: 150px;
+                height: 150px;
             }
 
             h1 {
-
-                font-size: 1.3rem;
-
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
             }
 
+            .section-title {
+                font-size: 1.15rem;
+            }
+
+            footer {
+                gap: 1.5rem;
+            }
         }
-
     </style>
-
 </head>
-
 <body>
+    <div class="header">
+        <div class="header-content">
+            <h1 id="scramble-text">Saron Berhane</h1>
+            <p style="font-size: 1rem; line-height: 1.7; color: #333;">
+                I invest in early-stage technology companies at Blackbird and run Foundry, our program for
+                researchers turning frontier science into companies.
+            </p>
+        </div>
+        <img src="assets/images/headshot.jpg" alt="Saron Berhane" class="headshot">
+    </div>
 
-    <div class="container">
-
-        <aside class="sidebar">
-
-            <a href="blog.html">Writing</a>
-
-            <a href="photos.html">Photography</a>
-
-        </aside>
-
-        <main class="content">
-
-            <h1>Saron Berhane</h1>
-
-            
-
-            <div class="section">
-
+    <div class="sections-container">
+        <section class="section">
+            <div class="section-number">01</div>
+            <h2 class="section-title scramble-header" data-text="Currently">Currently</h2>
+            <div class="section-content">
                 <p>
-
-                    I work in venture capital and am based in Sydney. My training is in biomedical engineering and immunobiology. 
-
-                    Previously, I founded and operated two hardware and biotech companies. Now I work at <a href="https://blackbird.vc">Blackbird</a>
-                    where I invest in early stage technology companies and run Foundry, our deep tech pre-accelerator.
-
+                    I focus on frontier technology rather than a single sector. Lately that’s looked like ML models of physical systems, quantum, robotics/embodied AI, AI in bio, and AI safety research.
                 </p>
-
-                 <p>
-
-                    I'm interested in tech that reshapes how we understand and interact with the world. 
-                    This is a non-exhaustive list and includes things like AI safety,
-                    quantum computing, robotics, synthetic biology, and physics simulation.
-
-        </p>
-
-    </div>
-
-    <div class="section">
-
-        <p><strong>Writing</strong></p>
-
-        <p>
-
-            I write about what I'm learning on my <a href="https://cyberneticmeadows.substack.com">Substack</a>. 
-
-            Recent posts are also listed <a href="blog.html">here</a>.
-
-        </p>
-
-    </div>
-
+                <p>
+                    I’m based in Sydney and work with founders obsessed with gnarly technical problems.
+                </p>
             </div>
+        </section>
 
-            <div class="social-links">
-
-                <a href="https://x.com/saron__berhane">X</a> · 
-                <a href="https://linkedin.com/in/saron-berhane/">LinkedIn</a> · 
-                <a href="mailto:sberhane@blackbird.vc">Email</a>
-
+        <section class="section">
+            <div class="section-number">02</div>
+            <h2 class="section-title scramble-header" data-text="Previously">Previously</h2>
+            <div class="section-content">
+                <p>
+                    Before venture, I founded and operated two companies in hardware and biotech - building products, hiring teams, and taking them from zero to one.
+                </p>
+                <p>
+                    The wins and battle scars from those journeys, along with my training in biomedical engineering and immunobiology, shape how I build and invest.
+                </p>
             </div>
+        </section>
 
-        </main>
+        <section class="section">
+            <div class="section-number">03</div>
+            <h2 class="section-title scramble-header" data-text="Writing">Writing</h2>
+            <div class="section-content">
+                <p>
+                    I write regularly on <a href="https://cyberneticmeadows.substack.com/">Substack</a>. 
+                    Recent posts:
+                </p>
+                <div class="posts">
+                    <div class="post-item">
+                        <div class="post-date">October 4, 2025</div>
+                        <a href="posts/first-post.html" class="post-title">Learning a new language</a>
+                        <div class="substack-link">
+                            <a href="https://cyberneticmeadows.substack.com/p/learning-a-new-language">Read on Substack →</a>
+                        </div>
+                    </div>
 
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
+    <footer>
+        <a href="https://x.com/saron__berhane">X</a>
+        <a href="https://linkedin.com/in/saron-berhane">LinkedIn</a>
+        <a href="mailto:sberhane@blackbird.vc">Email</a>
+        <a href="photos.html">Photography</a>
+    </footer>
+
+    <script>
+        // Scramble effect function - starts with random chars and reveals
+        const scrambleText = (element, finalText, shouldShow = false) => {
+            const chars = '!@#$%^&*()_+-=[]{}|;:,.<>?/~`ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let iterations = 0;
+            const speed = 20;
+            const maxIterations = finalText.length;
+
+            if (element.scrambleInterval) {
+                clearInterval(element.scrambleInterval);
+            }
+
+            // If shouldShow is true, make element visible and start with random chars
+            if (shouldShow) {
+                element.style.opacity = '1';
+                element.textContent = finalText.split('').map(char => {
+                    return char === ' ' ? ' ' : chars[Math.floor(Math.random() * chars.length)];
+                }).join('');
+            }
+
+            element.scrambleInterval = setInterval(() => {
+                element.textContent = finalText
+                    .split('')
+                    .map((char, index) => {
+                        if (char === ' ') return ' ';
+                        if (index < iterations) {
+                            return finalText[index];
+                        }
+                        return chars[Math.floor(Math.random() * chars.length)];
+                    })
+                    .join('');
+
+                if (iterations >= maxIterations) {
+                    clearInterval(element.scrambleInterval);
+                    element.textContent = finalText;
+                }
+
+                iterations += 1 / 2;
+            }, speed);
+        };
+
+        // Fade in function
+        const fadeIn = (element, delay = 0) => {
+            setTimeout(() => {
+                element.style.transition = 'opacity 0.6s ease';
+                element.style.opacity = '1';
+            }, delay);
+        };
+
+        // Page load sequence
+        window.addEventListener('load', () => {
+            // Step 1: Scramble name (0ms) - show and scramble
+            setTimeout(() => {
+                const nameElement = document.getElementById('scramble-text');
+                scrambleText(nameElement, 'Saron Berhane', true);
+            }, 100);
+
+            // Step 2: Show section numbers and scramble headers (700ms)
+            setTimeout(() => {
+                // Show section numbers
+                document.querySelectorAll('.section-number').forEach((num) => {
+                    num.style.transition = 'opacity 0.3s ease';
+                    num.style.opacity = '1';
+                });
+                
+                // Scramble headers - show and scramble
+                document.querySelectorAll('.scramble-header').forEach((header) => {
+                    const text = header.getAttribute('data-text');
+                    scrambleText(header, text, true);
+                });
+            }, 700);
+
+            // Step 3: Fade in rest of content (1400ms)
+            setTimeout(() => {
+                const headerP = document.querySelector('.header-content p');
+                fadeIn(headerP, 0);
+                
+                const headshot = document.querySelector('.headshot');
+                fadeIn(headshot, 0);
+                
+                document.querySelectorAll('.section-content').forEach((content, index) => {
+                    fadeIn(content, index * 100);
+                });
+                
+                const footer = document.querySelector('footer');
+                fadeIn(footer, 300);
+            }, 1400);
+        });
+
+        // Scramble on hover for name
+        document.getElementById('scramble-text').addEventListener('mouseenter', function() {
+            scrambleText(this, 'Saron Berhane', false);
+        });
+
+        // Scramble effect for section headers on hover
+        document.querySelectorAll('.scramble-header').forEach(header => {
+            header.addEventListener('mouseenter', function() {
+                const text = this.getAttribute('data-text');
+                scrambleText(this, text, false);
+            });
+        });
+
+        // Scramble effect for ALL links on hover
+        document.querySelectorAll('a').forEach(link => {
+            const originalText = link.textContent.trim();
+            link.addEventListener('mouseenter', function() {
+                scrambleText(this, originalText, false);
+            });
+        });
+    </script>
 </body>
-
 </html>
