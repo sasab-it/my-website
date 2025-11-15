@@ -12,19 +12,23 @@
         }
 
         body {
-            font-family: Georgia, 'Times New Roman', serif;
-            line-height: 1.7;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
             color: #111;
             background: #fff;
             padding: 3rem 2rem;
-            max-width: 650px;
+            max-width: 900px;
             margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         h1 {
-            font-size: 1.5rem;
-            font-weight: normal;
+            font-size: 2rem;
+            font-weight: 600;
             margin-bottom: 2rem;
+            letter-spacing: -0.02em;
         }
 
         h2 {
@@ -42,11 +46,12 @@
             color: #111;
             text-decoration: none;
             border-bottom: 1px solid #111;
+            transition: color 0.3s ease, border-color 0.3s ease;
         }
 
         a:hover {
-            border-bottom: 1px solid #999;
             color: #666;
+            border-bottom-color: #666;
         }
 
         .back-link {
@@ -61,10 +66,20 @@
             border-bottom: 1px solid #eee;
         }
 
+        .main-content {
+            flex: 1;
+        }
+
         .post {
             margin-bottom: 3rem;
             padding-bottom: 2rem;
             border-bottom: 1px solid #eee;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .post:hover {
+            transform: translateX(5px);
+            border-bottom-color: #111;
         }
 
         .post:last-child {
@@ -82,6 +97,7 @@
             border: none;
             font-size: 1.1rem;
             margin-bottom: 0.8rem;
+            font-weight: 500;
         }
 
         .post-title:hover h2 {
@@ -92,6 +108,7 @@
             color: #666;
             font-size: 0.95rem;
         }
+
         footer {
             margin-top: 4rem;
             padding-top: 2rem;
@@ -100,25 +117,32 @@
             gap: 1.5rem;
             font-size: 0.95rem;
         }
-        
+
         footer a {
-            border-bottom: 1px solid transparent;
+            border: none;
+            transition: color 0.3s ease;
         }
-        
+
         footer a:hover {
-            border-bottom: 1px solid #111;
+            color: #666;
         }
+
         @media (max-width: 600px) {
             body {
                 padding: 2rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.6rem;
             }
         }
     </style>
 </head>
 <body>
-    <a href="index.html" class="back-link">← Home</a>
-    
-    <h1>Writing</h1>
+    <div class="main-content">
+        <a href="index.html" class="back-link">← Home</a>
+        
+        <h1>Writing</h1>
 
     <div class="intro">
         <p>
@@ -137,10 +161,55 @@
         </p>
     </div>
         <footer>
-            <a href="index.html">Home</a>
-            <a href="blog.html">Writing</a>
-            <a href="photos.html">Photography</a>
-        </footer>
+        <a href="index.html">Home</a>
+        <a href="blog.html">Writing</a>
+        <a href="photos.html">Photography</a>
+    </footer>
+
+    <script>
+        // Scramble effect function
+        const scrambleText = (element, finalText) => {
+            const chars = '!@#$%^&*()_+-=[]{}|;:,.<>?/~`ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let iterations = 0;
+            const speed = 20;
+            const maxIterations = finalText.length;
+
+            if (element.scrambleInterval) {
+                clearInterval(element.scrambleInterval);
+            }
+
+            element.scrambleInterval = setInterval(() => {
+                element.textContent = finalText
+                    .split('')
+                    .map((char, index) => {
+                        if (char === ' ') return ' ';
+                        if (index < iterations) {
+                            return finalText[index];
+                        }
+                        return chars[Math.floor(Math.random() * chars.length)];
+                    })
+                    .join('');
+
+                if (iterations >= maxIterations) {
+                    clearInterval(element.scrambleInterval);
+                    element.textContent = finalText;
+                }
+
+                iterations += 1 / 2;
+            }, speed);
+        };
+
+        // Scramble effect for ALL links and headers on hover
+        document.querySelectorAll('a, h1, h2').forEach(element => {
+            const originalText = element.textContent.trim();
+            
+            element.addEventListener('mouseenter', function() {
+                scrambleText(this, originalText);
+            });
+        });
+    </script>
+</body>
+</html>
     <!-- Add more posts here - just copy the .post div structure -->
 </body>
 </html>
